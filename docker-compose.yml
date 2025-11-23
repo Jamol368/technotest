@@ -1,0 +1,38 @@
+version: '3.8'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./docker/php/Dockerfile
+    container_name: technotest_app
+    working_dir: /technotest
+    volumes:
+      - ./:/technotest
+    depends_on:
+      - db
+
+  nginx:
+    image: nginx:stable
+    container_name: technotest_web
+    ports:
+      - "8091:80"
+    volumes:
+      - ./:/technotest
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - app
+
+  db:
+    image: postgres:16.1
+    container_name: technotest_db
+    environment:
+      POSTGRES_DB: ${DB_DATABASE}
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "5463:5432"
+    volumes:
+      - technotest-pgdata:/var/lib/postgresql/data
+
+volumes:
+  technotest-pgdata:
