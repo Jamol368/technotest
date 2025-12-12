@@ -14,6 +14,9 @@
         rel="stylesheet">
 
     <link href="{{ asset('admin/css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('admin/css/styles.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    @stack('scripts-ckeditor')
 </head>
 <body id="page-top">
 <div id="wrapper">
@@ -63,5 +66,6 @@
 <script src="{{ asset('admin/js/demo/chart-area-demo.js') }}"></script>
 <script src="{{ asset('admin/js/demo/chart-pie-demo.js') }}"></script>
 
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 </body>
 </html>

@@ -1,0 +1,84 @@
+@extends('layouts.admin')
+
+@section('title', 'Dashboard')
+
+@section('content')
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <div id="content">
+
+            @include('admin.partials.navbar')
+
+            <div class="container-fluid">
+                <h1 class="text-4xl font-bold">{{ trans('messages.question_types') }}: {{ $question_type->name }}</h1>
+
+                <div class="card shadow my-4">
+                    <div class="card-body">
+
+                        <div class="border-t bg-gray-100 row p-4">
+                            <a href="{{ route('question-types.edit', $question_type) }}"
+                               class="btn btn-warning text-white text-center rounded-lg mr-2 p-2 text-lg">
+                                {{ trans('messages.edit') }}
+                            </a>
+
+                            <form action="{{ route('question-types.destroy', $question_type) }}" method="POST"
+                                  class="inline">
+                                @csrf @method('DELETE')
+                                <button type="submit"
+                                        onclick="return confirm('Delete this post?')"
+                                        class="btn btn-danger text-white text-center rounded-lg mr-2 p-2 text-lg">
+                                    {{ trans('messages.delete') }}
+                                </button>
+                            </form>
+
+                            <a href="{{ route('question-types.index') }}"
+                               class="btn btn-info text-white text-center rounded-lg mr-2 p-2 text-lg">
+                                {{ trans('messages.back') }}
+                            </a>
+                        </div>
+
+                        <table class="table table-bordered table-striped">
+                            <tr>
+                                <th style="width: 150px; text-align: left;">{{ trans('messages.name') }}:</th>
+                                <td>{{ $question_type->name }}</td>
+                            </tr>
+                            <tr>
+                                <th style="width: 150px; text-align: left;">{{ trans('messages.questions') }}:</th>
+                                <td>{{ $question_type->questions }}</td>
+                            </tr>
+                            <tr>
+                                <th style="width: 150px; text-align: left;">{{ trans('messages.minutes') }}:</th>
+                                <td>{{ $question_type->minutes }}</td>
+                            </tr>
+                            <tr>
+                                <th style="width: 150px; text-align: left;">{{ trans('messages.point') }}:</th>
+                                <td>{{ $question_type->point }}</td>
+                            </tr>
+                            <tr>
+                                <th style="width: 150px; text-align: left;">{{ trans('messages.price') }}:</th>
+                                <td>{{ $question_type->price }}</td>
+                            </tr>
+                            <tr>
+                                <th style="width: 150px; text-align: left;">{{ trans('messages.image') }}:</th>
+                                <td>
+                                    <img src="{{ asset('storage/' . $question_type->image) }}" width="300" class="mt-2">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th style="text-align: left;">{{ trans('messages.description') }}:</th>
+                                <td>{!! $question_type->description  !!}</td>
+                            </tr>
+                            <tr>
+                                <th style="text-align: left;">{{ trans('messages.created_at') }}:</th>
+                                <td>{{ $question_type->created_at->format('Y-m-d H:i') }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @include('admin.partials.footer')
+
+    </div>
+@endsection

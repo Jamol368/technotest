@@ -1,0 +1,31 @@
+.mt-25 {
+    margin-top: 25%;
+}
+
+.fz-11 {
+    font-size: 1.1rem !important;
+}
+
+.fz-10 {
+    font-size: 1rem !important;
+}
+
+.sidebar .nav-item .nav-link,
+.sidebar .sidebar-brand {
+    text-transform: uppercase !important;
+    font-size: 0.90rem !important;
+    letter-spacing: 0.5px;
+}
+
+.sidebar .nav-item .collapse .collapse-inner .collapse-item {
+    text-transform: uppercase !important;
+    font-size: 0.85rem !important;
+}
+
+.sidebar .nav-item .nav-link i {
+    font-size: 1.1rem !important;
+}
+
+.input-w {
+    width: 250px !important;
+}
