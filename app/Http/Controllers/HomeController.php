@@ -16,7 +16,7 @@ class HomeController extends Controller
     public function index(): View
     {
         $question_types = $this->question_type_service->getAll();
-        $announcements = $this->announcement_service->getAll();
+        $announcements = $this->announcement_service->getAll(['per_page' => 4]);
 
         return view('app.home', compact('question_types', 'announcements'));
     }
