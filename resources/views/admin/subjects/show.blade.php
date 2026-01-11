@@ -15,7 +15,7 @@
                 <div class="card shadow my-4">
                     <div class="card-body">
 
-                        <div class="border-t bg-gray-100 row p-4">
+                        <div class="border-t bg-gray-100 d-flex p-4">
                             <a href="{{ route('subjects.edit', $subject) }}"
                                class="btn btn-warning text-white text-center rounded-lg mr-2 p-2 text-lg">
                                 {{ trans('messages.edit') }}
