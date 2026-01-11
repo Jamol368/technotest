@@ -295,7 +295,7 @@ body {
 }
 
 img {
-    width: 100%;
+    width: auto;
     vertical-align: top
 }
 
