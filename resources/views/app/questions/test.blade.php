@@ -118,6 +118,7 @@
                                             <div class="question">
                                                 <div class="selected-answer times-new-roman-14 ng-star-inserted">
                                                     {!! $question['question'] !!}
+                                                    <p>{{ $question['explanation'] }}</p>
                                                 </div>
                                             </div>
 
