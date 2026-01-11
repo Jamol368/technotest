@@ -56,6 +56,7 @@
                                 @endforeach
                                 </tbody>
                             </table>
+                            {{ $textbooks->links('pagination::bootstrap-5') }}
                         </div>
                     </div>
                 </div>

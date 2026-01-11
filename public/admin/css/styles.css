@@ -29,3 +29,7 @@
 .input-w {
     width: 250px !important;
 }
+
+.table thead th, .table tbody td {
+    color: #858796;
+}

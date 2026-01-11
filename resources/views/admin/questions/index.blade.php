@@ -53,7 +53,7 @@
                                 <tbody>
                                 @foreach($questions as $question)
                                 <tr>
-                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $loop->iteration + $questions->firstItem() - 1 }}</td>
                                     <td>{{ $question->questionType->name }}</td>
                                     <td>{{ $question->subject->name }}</td>
                                     <td>{{ $question->created_at }}</td>
@@ -78,6 +78,7 @@
                                 @endforeach
                                 </tbody>
                             </table>
+                            {{ $questions->links('pagination::bootstrap-5') }}
                         </div>
                     </div>
                 </div>

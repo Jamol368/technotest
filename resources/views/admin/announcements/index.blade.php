@@ -55,6 +55,7 @@
                                 @endforeach
                                 </tbody>
                             </table>
+                            {{ $announcements->links('pagination::bootstrap-5') }}
                         </div>
                     </div>
                 </div>
