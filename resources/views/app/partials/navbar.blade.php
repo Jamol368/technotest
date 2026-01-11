@@ -50,6 +50,11 @@
                                         {{ trans('messages.profile') }}
                                     </a>
                                 </li>
+                                <li class="dropdown-item">
+                                    <a href="{{ route('user.attempts') }}" class="d-block">
+                                        {{ trans('messages.user_attempts') }}
+                                    </a>
+                                </li>
                                 <li>
                                     <form action="{{ route('logout') }}" method="POST">
                                         @csrf

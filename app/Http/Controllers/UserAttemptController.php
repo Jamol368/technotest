@@ -11,9 +11,15 @@ class UserAttemptController extends Controller
     {
         try {
             $user_attempt_service->submitAttempt($request->validated());
-            return redirect()->route('home');
+            return redirect()->route('user.attempts');
         } catch (\Exception $exception) {
             return view('app.errors.404', ['message' => $exception->getMessage()]);
         }
+    }
+
+    public function attempts(UserAttemptService $user_attempt_service)
+    {
+        $user_attempts = $user_attempt_service->getAll(['user_id' => auth()->id()]);
+        return view('app.profile.attempts', ['user_attempts' => $user_attempts]);
     }
 }

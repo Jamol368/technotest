@@ -53,6 +53,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/questions/{question_type}/subject/{subject}/topics', [AppTopicController::class, 'list'])->name('topics.list');
 
     Route::post('/attempt/submit', [AppUserAttemptController::class, 'submit'])->name('attempt.submit');
+
+    Route::get('/user/attempts', [AppUserAttemptController::class, 'attempts'])->name('user.attempts');
 });
 
 Route::prefix('admin')->middleware('admin')->group(function () {
