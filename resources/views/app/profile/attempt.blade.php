@@ -9,44 +9,17 @@
 
                     <div class="test-page">
 
-                        <div class="header header-container overflow-auto">
+                        <div class="header header-container">
 
                             <div class="home">
-                                <img src="{{ asset('/app/images/logo.svg') }}" alt="logo" style="width: 212px">
-                            </div>
-
-                            <div id="timer" class="timer justify-content-center">
-
-                                <div class="wrapper">
-
-                                    <div class="time-block ng-star-inserted">
-
-                                        <div id="minutes" class="count">{{ $question_type->minutes }}</div>
-
-                                        <div class="label">Daqiqa</div>
-
-                                    </div>
-                                    <div class="split ng-star-inserted">:</div>
-
-                                    <div class="time-block ng-star-inserted">
-
-                                        <div id="seconds" class="count">00</div>
-
-                                        <div class="label">Soniya</div>
-
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div id="test-submit" class="align-middle justify-content-center">
-                                <button id="end-test-button" class="end-test-button"> Sinovni yakunlash
-                                </button>
-
+                                <a href="{{ route('home') }}">
+                                    <img src="{{ asset('/app/images/logo.svg') }}" alt="logo" style="width: 212px">
+                                </a>
                             </div>
 
                         </div>
 
-                        <div class="main">
+                        <div class="main item">
 
                             <div class="h-full test-user-info">
 
@@ -92,7 +65,7 @@
                                                     <div class="container">
                                                         @for($i=0; $i<$question_type->getOriginal('questions');)
                                                             <div
-                                                                class="nav-item tab-links nav-item-{{ $i + 1 }} {{ $i ? '' : 'active' }}"> {{ ++$i }}</div>
+                                                                class="nav-item tab-links nav-item-{{ $i + 1 }} {{ $i ? '' : 'active' }} {{ $user_attempt[$i]['is_correct']?'checked':'danger' }}"> {{ ++$i }}</div>
                                                         @endfor
                                                     </div>
                                                 </div>
@@ -102,11 +75,8 @@
                                 </div>
 
                             </div>
-                            <form action="{{ route('attempt.submit') }}" method="post" id="test">
-                                @csrf
-                                @method('post')
-                                <input type="hidden" name="attempt_id" value="{{ $result['attempt_id'] }}">
-                                @foreach($result['questions'] as $key => $question)
+                            <div id="test">
+                                @foreach($user_attempt as $key => $question)
                                     <div class="test-list test-list-{{ $key + 1 }} {{ $key ? 'hidden' : '' }}">
                                         <div class="question-wrapper">
                                             <div class="question-number"> Savol {{ $key + 1 }}</div>
@@ -125,25 +95,26 @@
                                             <div class="answers">
                                                 <div class="mat-radio-group ng-untouched ng-pristine ng-invalid">
                                                     @foreach($question['options'] as $answer_key => $answer)
-                                                        <div class="mat-radio-button example-radio-button mat-accent"
+                                                        <div class="mat-radio example-radio-button mat-accent"
                                                              id="mat-radio-{{ $answer_key }}">
-                                                            <label class="mat-radio-label" for="mat-radio-{{ $answer_key }}-input">
-                                                                <span class="mat-radio-container">
+                                                            <label class="mat-radio" for="mat-radio-{{ $answer_key }}-input">
+                                                                <span class="mat-radio-container {{ $answer['is_selected']?'mat-radio-checked':'' }}">
                                                                     <span class="mat-radio-outer-circle"></span>
                                                                     <span class="mat-radio-inner-circle"></span>
-                                                                    <input type="radio" class="mat-radio-input"
-                                                                           id="mat-radio-{{ $answer_key }}-input"
-                                                                           name="answers[{{ $key + 1 }}]"
-                                                                           value="{{ $answer_key }}" tabindex="0">
                                                                     <span class="mat-ripple mat-radio-ripple mat-focus-indicator">
                                                                         <span class="mat-ripple-element mat-radio-persistent-ripple"></span>
                                                                     </span>
                                                                 </span>
                                                                 <span class="mat-radio-label-content">
-                                                                    <span style="display: none;">&nbsp;</span>
+                                                                    <span style="font-size: 16px; font-weight: 700"><?= chr(64 + $loop->iteration) ?>)</span>
                                                                     <span class="selected-answer times-new-roman-14 ng-star-inserted">
-                                                                        {{ $answer }}
+                                                                        {{ $answer['answer'] }}
                                                                     </span>
+                                                                    <?php if ($answer['is_selected'] && $answer['is_true']): ?>
+                                                                        <i class="fas fa-check color-green font-size-18"></i>
+                                                                    <?php elseif ($answer['is_selected'] && !$answer['is_true']): ?>
+                                                                        <i class="fas fa-times color-red font-size-18"></i>
+                                                                    <?php endif; ?>
                                                                 </span>
                                                             </label>
                                                         </div>
@@ -153,18 +124,15 @@
                                         </div>
                                         <div class="test-list-pagination">
                                             <button class="prev" type="button"> Oldingi</button>
-                                            <span class="test-number"> {{ $key + 1 }} / {{ count($result['questions']) }}</span>
-                                            <button class="next" type="button"> Keyingisi</button>
+                                            <span class="test-number"> {{ $key + 1 }} / {{ count($user_attempt) }}</span>
+                                            <button class="next" type="button"> Keyingi</button>
                                         </div>
                                     </div>
                                 @endforeach
-                            </form>
+                            </div>
                         </div>
                     </div>
-                </div><!----><!---->
-                <p-toast class="p-element ng-tns-c99-27 ng-star-inserted">
-                    <div class="ng-tns-c99-27 p-toast p-component p-toast-top-right"><!----></div>
-                </p-toast>
+                </div>
             </div>
         </div>
     </div>

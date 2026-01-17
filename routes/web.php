@@ -55,6 +55,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/attempt/submit', [AppUserAttemptController::class, 'submit'])->name('attempt.submit');
 
     Route::get('/user/attempts', [AppUserAttemptController::class, 'attempts'])->name('user.attempts');
+    Route::get('/user/attempts/{id}', [AppUserAttemptController::class, 'userAttempt'])->name('user.attempts.id');
 });
 
 Route::prefix('admin')->middleware('admin')->group(function () {

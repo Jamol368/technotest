@@ -13,6 +13,7 @@ class UserAttempt extends Model
         'subject_id',
         'topic_id',
         'questions',
+        'options',
         'answers',
         'true_answers',
         'correct_count',
@@ -22,6 +23,7 @@ class UserAttempt extends Model
 
     protected $casts = [
         'questions' => 'array',
+        'options' => 'array',
         'answers' => 'array',
         'true_answers' => 'array',
     ];

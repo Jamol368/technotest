@@ -3356,6 +3356,12 @@ select.mat-input-element:not(:disabled) {
     -webkit-tap-highlight-color: transparent;
     outline: 0
 }
+.mat-radio {
+    display: inline-flex;
+    align-items: center;
+    vertical-align: middle;
+    width: 100%
+}
 
 .mat-radio-label {
     -webkit-user-select: none;
@@ -3414,6 +3420,10 @@ select.mat-input-element:not(:disabled) {
     transform: scale(0.5);
     opacity: 1;
     transition: transform ease 280ms, background-color ease 280ms
+}
+
+.mat-radio .mat-radio-checked .mat-radio-inner-circle {
+    border: #444444 solid 10px
 }
 
 .cdk-high-contrast-active .mat-radio-checked .mat-radio-inner-circle {
@@ -4000,11 +4010,14 @@ select.mat-input-element:not(:disabled) {
 }
 
 .container .nav-item.active {
-    background-color: var(--gold) !important
+    border: 1px solid #596600
 }
 
 .container .nav-item.checked {
     background-color: var(--light-green)
+}
+.container .nav-item.danger {
+    background-color: var(--red)
 }
 
 .panel-title {
@@ -4162,6 +4175,14 @@ body {
 }
 
 @media (max-width: 768px) {
+    .main {
+        grid-template-columns: 100%;
+        padding: 0px 6px 0;
+        margin-top: 10px;
+    }
+    .test-user-info {
+        margin-bottom: 12px;
+    }
     .wrapper .time-block .count {
         width: 64px;
         padding: 12px 7px;
@@ -4184,13 +4205,29 @@ body {
         font-size: 16px
     }
     .header-container {
-        width: 100vh
+        flex-wrap: wrap;
+        height: auto;
+        justify-content: center;
+    }
+    .timer {
+        margin-top: 15px
     }
     #test-submit {
-        margin-left: 6px
+        margin-left: 6px;
+        margin-top: 22px;
     }
 }
 
 .tiptap figure figcaption {
     display: none !important;
+}
+
+.color-green {
+    color: green;
+}
+.color-red {
+    color: red;
+}
+.font-size-18 {
+    font-size: 18px;
 }
