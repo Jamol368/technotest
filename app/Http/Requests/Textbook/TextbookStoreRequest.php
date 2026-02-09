@@ -14,7 +14,7 @@ class TextbookStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'file' => 'required|file|max:2048|mimes:pdf',
+            'file' => 'required|file',
             'title' => 'required|string',
         ];
     }

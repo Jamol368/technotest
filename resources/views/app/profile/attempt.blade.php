@@ -37,6 +37,11 @@
                                         <div class="flex mt-2">
                                             <div> <b>Fan:</b> {{ $subject->name }}</div>
                                         </div>
+                                        @if(isset($topic))
+                                        <div class="flex mt-2">
+                                            <div> <b>Mavzu:</b> {{ $topic->name }}</div>
+                                        </div>
+                                        @endif
                                         <div class="flex mt-2">
                                             <div> <b>Ball:</b> {{ $question_type->point }}</div>
                                         </div>

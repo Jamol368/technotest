@@ -31,6 +31,7 @@ class UserAttemptController extends Controller
             'user_attempt' => $data['user_attempt'],
             'question_type' => $data['question_type'],
             'subject' => $data['subject'],
+            'topic' => $data['topic'],
         ]);
     }
 }

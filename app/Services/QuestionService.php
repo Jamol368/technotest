@@ -41,8 +41,8 @@ class QuestionService
     public function getRandomQuestions(Subject $subject, int $question_type_id, ?int $topic_id, int $questions_limit)
     {
         return $subject->questions()
-            ->where('question_type_id', $question_type_id)
-            ->when($topic_id, fn ($q) => $q->where('topic_id', $topic_id))
+            ->when($topic_id, fn ($q) => $q->where('question_type_id', $question_type_id)
+                ->where('topic_id', $topic_id))
             ->with('optionsInRandomOrder')
             ->with('correctOption')
             ->inRandomOrder()

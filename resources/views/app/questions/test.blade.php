@@ -12,7 +12,9 @@
                         <div class="header header-container overflow-auto">
 
                             <div class="home">
-                                <img src="{{ asset('/app/images/logo.svg') }}" alt="logo" style="width: 212px">
+                                <a href="{{ route('home') }}">
+                                    <img src="{{ asset('/app/images/logo.svg') }}" alt="logo" style="width: 212px">
+                                </a>
                             </div>
 
                             <div id="timer" class="timer justify-content-center">
@@ -64,6 +66,11 @@
                                         <div class="flex mt-2">
                                             <div> <b>Fan:</b> {{ $subject->name }}</div>
                                         </div>
+                                        @if(isset($topic))
+                                        <div class="flex mt-2">
+                                            <div> <b>Mavzu:</b> {{ $topic->name }}</div>
+                                        </div>
+                                        @endif
                                         <div class="flex mt-2">
                                             <div> <b>Ball:</b> {{ $question_type->point }}</div>
                                         </div>

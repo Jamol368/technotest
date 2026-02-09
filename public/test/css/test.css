@@ -3863,7 +3863,6 @@ select.mat-input-element:not(:disabled) {
     height: auto;
     background-color: #f2f2f2;
     border-radius: 10px;
-    overflow: auto
 }
 
 .test-logo {
@@ -3926,7 +3925,6 @@ select.mat-input-element:not(:disabled) {
     height: calc(100vh - 123px);
     align-items: start;
     min-height: max-content;
-    overflow-y: auto;
 }
 
 .teacher-name {

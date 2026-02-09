@@ -2,8 +2,7 @@
 
 @section('content')
     <?php
-//    $route = $question_type_id == 1?'topics.list':'questions.test';
-    $route = 'questions.test';
+    $route = $question_type_id === 2?'topics.list':'questions.test';
     ?>
     <div class="container py-4">
         <div class="heading-20219 mb-5">

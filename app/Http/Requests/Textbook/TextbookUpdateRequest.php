@@ -14,7 +14,7 @@ class TextbookUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'file' => 'nullable|file|max:2048|mimes:pdf',
+            'file' => 'nullable|file',
             'title' => 'required|string',
         ];
     }

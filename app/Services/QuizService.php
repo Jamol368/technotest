@@ -33,6 +33,7 @@ class QuizService
                 'questions' => collect($questions)->map(fn($q) => Arr::except($q, ['correct_option_id'])),
                 'question_type' => $question_type,
                 'subject' => $subject,
+                'topic' => $topic,
             ];
         });
     }
@@ -40,8 +41,8 @@ class QuizService
     private function ensureEnoughQuestions(Subject $subject, int $type_id, ?int $topic_id, int $required): void
     {
         $available = $subject->questions()
-            ->where('question_type_id', $type_id)
-            ->when($topic_id, fn ($q) => $q->where('topic_id', $topic_id))
+            ->when($topic_id, fn ($q) => $q->where('question_type_id', $type_id)
+                ->where('topic_id', $topic_id))
             ->count();
 
         if ($available < $required) {

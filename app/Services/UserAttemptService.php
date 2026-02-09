@@ -90,6 +90,7 @@ class UserAttemptService
         $model = $this->repository->find($id)->toArray();
         $question_type = QuestionType::query()->findOrFail($model['question_type_id']);
         $subject = Subject::query()->findOrFail($model['subject_id']);
+        $topic = Topic::query()->find($model['topic_id']);
 
         $questions = Question::whereIn('id', $model['questions'])
             ->with('options:id,question_id,answer')
@@ -134,6 +135,7 @@ class UserAttemptService
             'user_attempt' => $user_attempt,
             'question_type' => $question_type,
             'subject' => $subject,
+            'topic' => $topic,
         ];
     }
 }
