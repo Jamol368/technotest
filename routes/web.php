@@ -42,6 +42,10 @@ Route::get('/textbooks/{id}/download', [AppTextbookController::class, 'download'
     ->name('textbooks.download');
 Route::get('/subjects/{question_type_id}', [AppSubjectController::class, 'index'])->name('subjects');
 
+Route::any('/handle/{paysys}',function($paysys){
+    (new Goodoneuz\PayUz\PayUz)->driver($paysys)->handle();
+});
+
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
     Route::post('/admin/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
@@ -56,6 +60,14 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/user/attempts', [AppUserAttemptController::class, 'attempts'])->name('user.attempts');
     Route::get('/user/attempts/{id}', [AppUserAttemptController::class, 'userAttempt'])->name('user.attempts.id');
+
+    Route::any('/pay/{paysys}/{key}/{amount}',function($paysys, $key, $amount){
+        $model = Goodoneuz\PayUz\Services\PaymentService::convertKeyToModel($key);
+        $pay_uz = new Goodoneuz\PayUz\PayUz;
+        $pay_uz
+            ->driver($paysys)
+            ->redirect($model, $amount, 860, \route('profile'));
+    });
 });
 
 Route::prefix('admin')->middleware('admin')->group(function () {
