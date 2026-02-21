@@ -84,6 +84,24 @@
                 </div>
 
             </div>
+
+        </div>
+        <div class="profile-card mx-auto max-w-md p-6 bg-white shadow-lg rounded-3 mt-5 p-3">
+            <h3 class="h3">Hisobni to'ldirish</h3>
+            <img src="https://click.uz/click/images/logo.svg" alt="click.uz" class="m-4 p-3 click-logo">
+            <form action="{{ route('profile.balance') }}" method="post">
+                @csrf
+                @method('POST')
+                <div class="row g-3">
+                    <div class="col-md-8">
+                        <input type="number" name="amount" class="form-control border-0 bg-light px-4"
+                               value="5000" style="height: 55px;" min="5000">
+                    </div>
+                    <div class="col-md-4">
+                        <button class="btn btn-success bg-success w-100 py-3" type="submit">To'ldirish</button>
+                    </div>
+                </div>
+            </form>
         </div>
 
     </div>

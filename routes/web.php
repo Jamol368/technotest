@@ -52,6 +52,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('profile', [ProfileController::class, 'profile'])->name('profile');
     Route::put('profile/{user}', [ProfileController::class, 'update'])->name('profile.update');
+    Route::post('profile/balance', [ProfileController::class, 'balance'])->name('profile.balance');
 
     Route::get('/questions/{question_type}/subject/{subject}/test/{topic?}', [AppQuestionController::class, 'test'])->name('questions.test');
     Route::get('/questions/{question_type}/subject/{subject}/topics', [AppTopicController::class, 'list'])->name('topics.list');
@@ -67,7 +68,7 @@ Route::middleware('auth')->group(function () {
         $pay_uz
             ->driver($paysys)
             ->redirect($model, $amount, 860, \route('profile'));
-    });
+    })->name('pay');
 });
 
 Route::prefix('admin')->middleware('admin')->group(function () {

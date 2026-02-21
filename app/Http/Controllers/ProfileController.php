@@ -8,6 +8,8 @@ use App\Services\QualificationService;
 use App\Services\SubjectService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
@@ -29,5 +31,14 @@ class ProfileController extends Controller
         $user->update($request->validated());
 
         return redirect(route('profile', $user));
+    }
+
+    public function balance(Request $request): RedirectResponse
+    {
+        return redirect()->route('pay', [
+            'paysys' => 'click',
+            'key' => Auth::user()->getAuthIdentifier(),
+            'amount' => $request->post('amount'),
+        ]);
     }
 }
