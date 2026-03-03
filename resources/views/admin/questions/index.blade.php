@@ -16,7 +16,7 @@
 
                 <form class="d-sm-inline-block form-inline mr-auto ml-md-3 my-4 my-md-0 mw-100 navbar-search" action="{{ route('questions.index') }}" method="get">
                     @csrf
-                    <input type="text" class="form-control fz-11 mr-3" placeholder="{{ trans('messages.name') }}"
+                    <input type="text" class="form-control fz-11 mr-3" placeholder="{{ trans('messages.question') }}"
                            aria-label="Search" name="name" value="{{ request('name') }}" aria-describedby="basic-addon2">
                     <input type="text" class="form-control fz-11 mr-3 datepicker" placeholder="{{ trans('messages.date_from') }}"
                            aria-label="Search" name="created_at_from" value="{{ request('created_at_from') }}" aria-describedby="basic-addon2">
@@ -46,6 +46,7 @@
                                     <th>#</th>
                                     <th>{{ trans('messages.question_type') }}</th>
                                     <th>{{ trans('messages.subject') }}</th>
+                                    <th>{{ trans('messages.question') }}</th>
                                     <th>{{ trans('messages.created_at') }}</th>
                                     <th>{{ trans('messages.actions') }}</th>
                                 </tr>
@@ -56,6 +57,7 @@
                                     <td>{{ $loop->iteration + $questions->firstItem() - 1 }}</td>
                                     <td>{{ $question->questionType->name }}</td>
                                     <td>{{ $question->subject->name }}</td>
+                                    <td style="max-width: 300px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{!! $question->question !!}</td>
                                     <td>{{ $question->created_at }}</td>
                                     <td>
                                         <a href="{{ route('questions.show', $question->id) }}" class="btn btn-sm btn-info">

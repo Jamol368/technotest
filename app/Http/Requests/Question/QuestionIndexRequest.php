@@ -14,6 +14,7 @@ class QuestionIndexRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'name' => 'nullable|string',
             'question_type_id' => 'nullable|integer',
             'subject_id' => 'nullable|integer',
             'topic_id' => 'nullable|integer',

@@ -13,6 +13,7 @@ class QuestionFilter
     public function apply(Builder $query): Builder
     {
         return $query
+            ->when(isset($this->data['name']), fn($q) => $q->where('question', 'ilike', '%'.$this->data['name'].'%'))
             ->when(isset($this->data['question_type_id']), fn($q) => $q->where('question_type_id', $this->data['question_type_id']))
             ->when(isset($this->data['subject_id']), fn($q) => $q->where('subject_id', $this->data['subject_id']))
             ->when(isset($this->data['topic_id']), fn($q) => $q->where('topic_id', $this->data['topic_id']))

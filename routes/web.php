@@ -62,10 +62,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/user/attempts', [AppUserAttemptController::class, 'attempts'])->name('user.attempts');
     Route::get('/user/attempts/{id}', [AppUserAttemptController::class, 'userAttempt'])->name('user.attempts.id');
 
-    Route::any('/pay/{paysys}/{key}/{amount}',function($paysys, $key, $amount){
+    Route::any('/pay/{paysys}/{key}/{amount}', function ($paysys, $key, $amount) {
         $model = Goodoneuz\PayUz\Services\PaymentService::convertKeyToModel($key);
-        $pay_uz = new Goodoneuz\PayUz\PayUz;
-        $pay_uz
+        (new Goodoneuz\PayUz\PayUz)
             ->driver($paysys)
             ->redirect($model, $amount, 860, \route('profile'));
     })->name('pay');
